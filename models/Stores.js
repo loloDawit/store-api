@@ -21,5 +21,8 @@ const storeSchema = new mongoose.Schema({
           type : String,
           match :[ /\d(3)- \d(3)-\d(4)/ ],
       },
-  }
+  },
+  location : {
+    city: String,
+  },
 });
