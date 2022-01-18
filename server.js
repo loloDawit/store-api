@@ -15,9 +15,6 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use('/api/v1/auth', auth);
-app.use('/api/v1/', (req, res) => {
-  res.send({ message: 'Hi' });
-});
 
 const PORT = process.env.PORT || 8080;
 
