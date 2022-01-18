@@ -36,6 +36,7 @@
     "express": "^4.17.2",
     "express-mongo-sanitize": "^2.1.0",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
     "mongoose": "^6.1.6",
     "nodemon": "^2.0.15"
   },
