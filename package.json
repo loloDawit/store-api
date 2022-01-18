@@ -1,12 +1,14 @@
 {
   "name": "backend-modern-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "New modern API that returns nordstrom stores",
   "main": "server.js",
   "scripts": {
     "test": "mocha -10000",
     "dev": "nodemon node server",
-    "start": "NODE_ENV=production node server"
+    "start": "NODE_ENV=production node server",
+    "release": "release-it",
+    "version": "auto-changelog --template changelog.template.hbs -p && git add CHANGELOG.md"
   },
   "repository": {
     "type": "git",
@@ -22,7 +24,7 @@
     "Express",
     "Nodejs"
   ],
-  "author": "Seble A.",
+  "author": "Dawit, Seble A.",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/loloDawit/project-volt/issues"
@@ -36,10 +38,13 @@
     "express": "^4.17.2",
     "express-mongo-sanitize": "^2.1.0",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
     "mongoose": "^6.1.6",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "release-it": "^14.12.3"
   },
   "devDependencies": {
+    "auto-changelog": "^2.3.0",
     "colors": "^1.4.0"
   }
 }
