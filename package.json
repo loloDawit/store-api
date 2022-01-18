@@ -1,6 +1,6 @@
 {
   "name": "backend-modern-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "New modern API that returns nordstrom stores",
   "main": "server.js",
   "scripts": {
