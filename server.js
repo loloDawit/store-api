@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
-const colors = require('colors');
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
@@ -11,6 +10,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const dbConnection = require('./config/db');
 require('dotenv').config();
+require('colors');
 // Load routes
 const auth = require('./routes/auth');
 
