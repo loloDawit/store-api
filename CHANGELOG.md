@@ -5,7 +5,19 @@ All notable changes to this project will be documented in this file. Dates are d
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.3](https://github.com/loloDawit/store-api/compare/1.0.2...1.0.3)
+## [1.0.4](https://github.com/loloDawit/store-api/compare/1.0.3...1.0.4)
+
+### Merged
+
+- Release 1.0.3 [`#8`](https://github.com/loloDawit/store-api/pull/8)
+
+### Commits
+
+- update PR template [`3f37a69`](https://github.com/loloDawit/store-api/commit/3f37a69f9b6e4b88350d21a0141254caf7f08ad8)
+- update PR template [`37347ef`](https://github.com/loloDawit/store-api/commit/37347ef4e0cb3bf9686af28c191b9db9c56d5c53)
+- update file name [`224f0f2`](https://github.com/loloDawit/store-api/commit/224f0f234937f463e04897fffa9bb4e9f1081cec)
+
+## [1.0.3](https://github.com/loloDawit/store-api/compare/1.0.2...1.0.3) - 2022-01-17
 
 ### Merged
 
@@ -17,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Commits
 
 - standardize pull requests [`e972319`](https://github.com/loloDawit/store-api/commit/e97231907fb7e3b161328a263984ecd939d193fa)
+- Release 1.0.3 [`2e34b4a`](https://github.com/loloDawit/store-api/commit/2e34b4a8a14a7192913565ba61483146a8ab74ab)
 
 ## [1.0.2](https://github.com/loloDawit/store-api/compare/1.0.1...1.0.2) - 2022-01-17
 
