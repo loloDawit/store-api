@@ -14,6 +14,10 @@ app.use(express.json());
 // parse the cookier
 app.use(cookieParser());
 
+// logs HTTP responses
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 // Use static file and folders
 app.use(express.static(path.join(__dirname, 'public')));
 
