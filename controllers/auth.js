@@ -4,9 +4,11 @@ const User = require('../models/Users');
 const asyncHandler = require('../middleware/async');
 const { sendTokenResponse } = require('../utils/response');
 
-// Register user
+/**
+ * RegisterUser Creates new users
+ * @returns access token
+ */
 exports.registerUser = asyncHandler(async (req, res, next) => {
-  console.log(req.body);
   const { name, email, password, role } = req.body;
   const newUser = await User.create({
     name,
