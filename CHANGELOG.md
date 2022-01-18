@@ -5,7 +5,14 @@ All notable changes to this project will be documented in this file. Dates are d
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 1.0.1
+## [1.0.2](https://github.com/loloDawit/store-api/compare/1.0.1...1.0.2)
+
+### Commits
+
+- add test [`b5fa850`](https://github.com/loloDawit/store-api/commit/b5fa8506909aa6da4ee604c19e7300af190262fb)
+- remove req.body and add comment [`8513cf5`](https://github.com/loloDawit/store-api/commit/8513cf5d6e48299cb1658d59dc3f750e6ffdfef5)
+
+## 1.0.1 - 2022-01-17
 
 ### Merged
 

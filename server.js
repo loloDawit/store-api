@@ -24,3 +24,5 @@ const PORT = process.env.PORT || 8080;
 const server = app.listen(PORT, () => {
   console.log(`Server running in ${process.env.NODE_ENV} on Port ${PORT}`.yellow.bold);
 });
+
+module.exports = server;
