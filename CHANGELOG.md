@@ -5,13 +5,20 @@ All notable changes to this project will be documented in this file. Dates are d
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.5](https://github.com/loloDawit/store-api/compare/1.0.4...1.0.5)
+## [1.0.6](https://github.com/loloDawit/store-api/compare/1.0.5...1.0.6)
+
+### Commits
+
+- update release [`01e9a98`](https://github.com/loloDawit/store-api/commit/01e9a98cfdb0a40544858c31dbd9537f310e740e)
+- minor update [`5687f15`](https://github.com/loloDawit/store-api/commit/5687f15d46b7899921aed25e149bcdbbfdad7009)
+
+## [1.0.5](https://github.com/loloDawit/store-api/compare/1.0.4...1.0.5) - 2022-01-17
 
 ### Commits
 
 - - updated server to more secure and install packages [`7e56419`](https://github.com/loloDawit/store-api/commit/7e56419a0cea4d362590d9710d185dd81cf2c4b8)
+- Release 1.0.5 [`6556b3d`](https://github.com/loloDawit/store-api/commit/6556b3d55d6033babe708394a86b85342d744be0)
 - handle promise rejections [`0c4e5ed`](https://github.com/loloDawit/store-api/commit/0c4e5ed3c8bc8c1392a07ca572de8c624a6f4be7)
-- add logs [`b12cfd4`](https://github.com/loloDawit/store-api/commit/b12cfd4bee135f44916358ce007d746fd2aa52bc)
 
 ## [1.0.4](https://github.com/loloDawit/store-api/compare/1.0.3...1.0.4) - 2022-01-17
 
