@@ -14,6 +14,9 @@ app.use(express.json());
 // parse the cookier
 app.use(cookieParser());
 
+// Use static file and folders
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use('/api/v1/auth', auth);
 
 const PORT = process.env.PORT || 8080;
