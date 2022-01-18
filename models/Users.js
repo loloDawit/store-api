@@ -45,7 +45,7 @@ UserSchema.pre('save', async function (next) {
   this.password = await bcryptjs.hash(this.password, salt);
 });
 
-UserSchema.methods.getSignedJWTToken = function () {
+UserSchema.methods.getSignedJWT = function () {
   return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRE_DATE,
   });
