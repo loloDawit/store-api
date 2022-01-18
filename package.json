@@ -45,6 +45,9 @@
   },
   "devDependencies": {
     "auto-changelog": "^2.3.0",
-    "colors": "^1.4.0"
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "colors": "^1.4.0",
+    "mocha": "^9.1.4"
   }
 }
