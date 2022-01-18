@@ -2,6 +2,7 @@
 // CURD - create upate read read delete
 const User = require('../models/Users');
 const asyncHandler = require('../middleware/async');
+const { sendTokenResponse } = require('../utils/response');
 
 // Register user
 exports.registerUser = asyncHandler(async (req, res, next) => {
@@ -11,8 +12,8 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
     name,
     email,
     password,
-    role,
+    role
   });
   //
-  console.log(newUser);
+  return sendTokenResponse(newUser, 201, res);
 });
