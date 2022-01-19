@@ -3,6 +3,7 @@
 const User = require('../models/Users');
 const asyncHandler = require('../middleware/async');
 const { sendTokenResponse } = require('../utils/response');
+const ErrorResponse = require('../utils/error');
 
 /**
  * RegisterUser Creates new users
@@ -19,4 +20,23 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
   });
   //
   return sendTokenResponse(newUser, 201, res);
+});
+
+exports.signInUser = asyncHandler(async (req, res, next) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return next(new ErrorResponse('Validation failed, check you have the correct password and email', 400));
+  }
+
+  const user = await User.findOne({ email: email }).select('+password');
+
+  if (!user) {
+    return next(new ErrorResponse('Validation failed, Invalid password/email', 400));
+  }
+  // validate password
+  const comparePassword = await user.validateHashedPassword(password);
+  if (!comparePassword) {
+    return next(new ErrorResponse('Validation failed, Invalid password/email', 400));
+  }
+  return sendTokenResponse(user, 200, res);
 });
