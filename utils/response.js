@@ -5,7 +5,7 @@ exports.sendTokenResponse = (user, statusCode, response) => {
     expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE_DATE * 24 * 60 * 60 * 1000),
     httpOnly: true
   };
-  console.log(options);
+
   var expiresIn = moment(options.expires).format('dddd, MMMM Do YYYY, h:mm:ss a');
 
   var scope = {
