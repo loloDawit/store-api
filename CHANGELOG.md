@@ -5,13 +5,21 @@ All notable changes to this project will be documented in this file. Dates are d
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.7](https://github.com/loloDawit/store-api/compare/1.0.6...1.0.7)
+## [1.0.8](https://github.com/loloDawit/store-api/compare/1.0.7...1.0.8)
+
+### Commits
+
+- add test cases [`2e97d57`](https://github.com/loloDawit/store-api/commit/2e97d57836bce81729868ed6cc2f86b8678a8db1)
+- create app.js and move logic from server to app.js [`9fe43dd`](https://github.com/loloDawit/store-api/commit/9fe43dd46252fce5d33e1979f8d151fa05af0b36)
+- add function to validate password [`919291c`](https://github.com/loloDawit/store-api/commit/919291c5460e7ba3aa60cba525eb1857732cdbc7)
+
+## [1.0.7](https://github.com/loloDawit/store-api/compare/1.0.6...1.0.7) - 2022-01-18
 
 ### Commits
 
 - add security features [`a95c200`](https://github.com/loloDawit/store-api/commit/a95c200a27ca326e4162a5fa1961bf0265a185d0)
+- chore: release v1.0.7 [`39369b9`](https://github.com/loloDawit/store-api/commit/39369b96b812a9c47b80cd4ffbdc575ea9dbe9d1)
 - add .snyk [`64dddbe`](https://github.com/loloDawit/store-api/commit/64dddbe2db903f3dcc7ba199f8bc0c8b04222586)
-- remove log [`de04c89`](https://github.com/loloDawit/store-api/commit/de04c89b87d53a641fcccc1153592a6cac8ba870)
 
 ## [1.0.6](https://github.com/loloDawit/store-api/compare/1.0.5...1.0.6) - 2022-01-17
 
