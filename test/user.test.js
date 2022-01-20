@@ -1,34 +1,34 @@
 const app = require('../app');
+const server = require('../server');
+const { disconnectDataBase, connectDataBase } = require('../config/db');
 const mongoose = require('mongoose');
 const User = require('../models/Users');
 const supertest = require('supertest');
+const request = supertest(app);
 require('dotenv').config();
 
-mongoose.Promise = global.Promise;
-
-beforeEach((done) => {
-  mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, () => done());
-});
-//Called hooks which runs before something.
-afterEach((done) => {
-  mongoose.connection.collections.users.drop(() => {
-    done();
+describe('API test', () => {
+  afterAll(() => {
+    mongoose.connection.collections.users.drop();
+    disconnectDataBase();
+    server.close();
   });
-});
 
-test('POST /api/v1/auth/register', async () => {
-  const user = new User({
-    name: 'dawit',
-    email: 'daaaawjaaaaaaaatab64a@gmail.com',
-    password: '12dsgfdsdsq'
-  });
-  const newUser = await User.create(user);
+  describe('POST /api/v1/register', () => {
+    it('should create a new user', async () => {
+      const user = new User({
+        name: 'dawit',
+        email: 'daaaawjaaaaaaaatab64a@gmail.com',
+        password: '12dsgfdsdsq'
+      });
+      await User.create(user);
 
-  await supertest(app)
-    .post('/api/v1/auth/signin')
-    .send({ email: 'daaaawjaaaaaaaatab64a@gmail.com', password: '12dsgfdsdsq' })
-    .expect(200)
-    .then((response) => {
+      const response = await request
+        .post('/api/v1/auth/signin')
+        .send({ email: 'daaaawjaaaaaaaatab64a@gmail.com', password: '12dsgfdsdsq' });
+
+      expect(response.status).toBe(200);
+
       const expected = { access: 'user', apiOwner: 'api.v1' };
       const actual = response.body.scope;
       expect(actual).toMatchObject(expected);
@@ -37,4 +37,5 @@ test('POST /api/v1/auth/register', async () => {
       expect(response.body).toHaveProperty('scope');
       expect(response.body).toHaveProperty('expiresIn');
     });
+  });
 });
