@@ -1,7 +1,7 @@
-const dbConnection = require('./config/db');
+const { connectDataBase } = require('./config/db');
 const app = require('./app');
 // DB connection
-dbConnection();
+connectDataBase();
 const PORT = process.env.PORT || 8080;
 
 const server = app.listen(PORT, () => {
