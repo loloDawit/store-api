@@ -4,7 +4,7 @@
   "description": "New modern API that returns nordstrom stores",
   "main": "server.js",
   "engines": {
-    "node" : ">=14.x" 
+    "node": ">=14.x"
   },
   "scripts": {
     "test": "jest",
@@ -48,6 +48,7 @@
     "hpp": "^0.2.3",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
+    "mongodb-memory-server": "^8.2.0",
     "mongoose": "^6.1.6",
     "nodemon": "^2.0.15",
     "release-it": "^14.12.3",
