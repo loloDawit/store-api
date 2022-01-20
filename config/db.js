@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
-console.log('remove me::', process.env.MONGO_URI);
+
 let connection;
 const connectDataBase = async () => {
   try {
