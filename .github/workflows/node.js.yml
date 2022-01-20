@@ -31,7 +31,5 @@ jobs:
         touch .env
         echo MONGO_URI=${{ secrets.MONGO_URI }} >> .env
         cat .env
-
-    - run: npm install
-
-    - run: npm test
+        npm install
+        npm test
