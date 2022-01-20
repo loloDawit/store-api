@@ -21,18 +21,19 @@ jobs:
     steps:
     - name: Git checkout
       uses: actions/checkout@v1
-      env:
-        MONGO_URI : ${{ secrets.MONGO_URI }}
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-
-    - run: npm install
-
-    - run: | 
+    
+    - name: Create env file
+      run: |
         touch .env
         echo MONGO_URI=${{ secrets.MONGO_URI }} >> .env
         cat .env
+        npm install
         npm test
+      env:
+        MONGO_URI : ${{ secrets.MONGO_URI }}
+        
