@@ -10,8 +10,8 @@ require('dotenv').config();
 describe('API test', () => {
   afterAll(async () => {
     await mongoose.connection.collections.users.drop();
-    await disconnectDataBase();
-    server.close();
+    // await disconnectDataBase();
+    // server.close();
   });
 
   describe('POST /api/v1/register', () => {
