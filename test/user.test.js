@@ -17,7 +17,7 @@ describe('API test', () => {
   describe('POST /api/v1/register', () => {
     it('should create a new user', async () => {
       const user = new User({
-        name: 'dawit',
+        name: 'testuser',
         email: 'testuser@gmail.com',
         password: 'passw0$rd'
       });
