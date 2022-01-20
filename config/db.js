@@ -1,17 +1,10 @@
 const mongoose = require('mongoose');
-const { MongoMemoryServer } = require('mongodb-memory-server');
 
-let mongod = null;
-
+let connection;
 const connectDataBase = async () => {
   try {
-    let dbUri = process.env.MONGO_URI;
-    if (process.env.NODE_ENV === 'test') {
-      mongod = await MongoMemoryServer.create();
-      dbUri = mongod.getUri();
-    }
-    const connect = await mongoose.connect(dbUri);
-    console.log(`Mongo DB connected: ${connect.connection.host}`.blue.bold);
+    connection = await mongoose.connect(process.env.MONGO_URI);
+    console.log(`Mongo DB connected: ${connection.connection.host}`.blue.bold);
   } catch (error) {
     console.log(error);
     process.exit(1);
@@ -20,10 +13,8 @@ const connectDataBase = async () => {
 
 const disconnectDataBase = async () => {
   try {
+    console.log(`Clossing Mongo DB connection: ${mongoose.connection.host}`.yellow.bold);
     await mongoose.connection.close();
-    if (mongod) {
-      await mongod.stop();
-    }
   } catch (error) {
     console.log(error);
     process.exit(1);
