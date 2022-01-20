@@ -29,9 +29,6 @@ jobs:
     
     - name: Create env file
       run: |
-        touch .env
-        echo MONGO_URI=${{ secrets.MONGO_URI }} >> .env
-        cat .env
         npm install
         npm test
       env:
