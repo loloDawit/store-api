@@ -33,4 +33,5 @@ jobs:
         npm test
       env:
         MONGO_URI : ${{ secrets.MONGO_URI }}
+        COOKIE_SECRET : ${{ secrets.COOKIE_SECRET }}
         
