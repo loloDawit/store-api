@@ -51,7 +51,7 @@ const limiter = rateLimit({
   standardHeaders: true // Return rate limit info in the `RateLimit-*` headers
 });
 // Apply the rate limiting middleware to all requests
-app.use(limiter);
+if (process.env.NODE_ENV === 'production' && app.use(limiter));
 
 // prevent hpp param pollution
 app.use(hpp());
