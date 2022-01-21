@@ -34,4 +34,7 @@ jobs:
       env:
         MONGO_URI : ${{ secrets.MONGO_URI }}
         COOKIE_SECRET : ${{ secrets.COOKIE_SECRET }}
+        JWT_COOKIE_EXPIRE_DATE: ${{ secrets.JWT_COOKIE_EXPIRE_DATE }}
+        JWT_EXPIRE_DATE: ${{ secrets.JWT_EXPIRE_DATE }}
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}
         
