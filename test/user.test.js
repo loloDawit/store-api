@@ -23,6 +23,7 @@ describe('API test', () => {
       // await User.create(user);
 
       const response = await request.post('/api/v1/auth/register').send(user);
+      console.log(response);
       expect(response.status).toBe(201);
 
       const expected = { access: 'user', apiOwner: 'api.v1' };
