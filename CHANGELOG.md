@@ -5,7 +5,15 @@ All notable changes to this project will be documented in this file. Dates are d
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.8](https://github.com/loloDawit/store-api/compare/1.0.7...1.0.8)
+## [1.0.9](https://github.com/loloDawit/store-api/compare/1.0.8...1.0.9)
+
+### Commits
+
+- update jest errors [`2c72fc9`](https://github.com/loloDawit/store-api/commit/2c72fc9f82ac70fe2c7f4a3aba52150dc2eaf8f1)
+- lock node version [`8020307`](https://github.com/loloDawit/store-api/commit/80203076fa279d648afaef336f132cd62c566b00)
+- upgrade mongoose to 6.1.7 [`7fe1fbf`](https://github.com/loloDawit/store-api/commit/7fe1fbf8bba6f292ccc28d0c40dbeb17390cfe3a)
+
+## [1.0.8](https://github.com/loloDawit/store-api/compare/1.0.7...1.0.8) - 2022-01-19
 
 ### Commits
 
