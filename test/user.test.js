@@ -9,7 +9,7 @@ require('dotenv').config();
 describe('API test', () => {
   afterAll(async () => {
     await mongoose.connection.collections.users.drop();
-    // await disconnectDataBase();
+    await disconnectDataBase();
     server.close();
   });
 
