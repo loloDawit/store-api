@@ -10,7 +10,7 @@ describe('API test', () => {
   afterAll(async () => {
     await mongoose.connection.collections.users.drop();
     // await disconnectDataBase();
-    // server.close();
+    server.close();
   });
 
   describe('POST /api/v1/register', () => {
