@@ -47,7 +47,7 @@ jobs:
         gistID: 8effb3f12e575124c19dc2b50aa632f8
         filename: store_api_coverage.json
         label: coverage
-        message: ${{ env.COVERAGE }}
+        message: "test"
         namedLogo: jest
         color: blue
         logoColor: lightblue
