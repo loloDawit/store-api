@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "jest",
-    "coverage": "nyc npm run test",
+    "test:coverage": "npm test -- --coverage",
     "dev": "nodemon node server",
     "start": "NODE_ENV=production node server",
     "release": "release-it",
