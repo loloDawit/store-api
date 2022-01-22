@@ -27,29 +27,25 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     
-    - name: Create env file
+    - name: Run unit tests with coverage
       run: |
         npm install
-        npm test
+        SUMMARY="$(npm test --coverage --coverageReporters=text-summary | tail -3 | head -1)"
+        TOKENS=($SUMMARY)
+        echo "COVERAGE=$(echo ${TOKENS[2]})" >> $GITHUB_ENV
       env:
         MONGO_URI : ${{ secrets.MONGO_URI }}
         COOKIE_SECRET : ${{ secrets.COOKIE_SECRET }}
         JWT_COOKIE_EXPIRE_DATE: ${{ secrets.JWT_COOKIE_EXPIRE_DATE }}
         JWT_EXPIRE_DATE: ${{ secrets.JWT_EXPIRE_DATE }}
         JWT_SECRET: ${{ secrets.JWT_SECRET }}
-
-    - name: Run unit tests with coverage
-      run: |
-        SUMMARY="$(npm test --coverage --coverageReporters=text-summary | tail -3 | head -1)"
-        TOKENS=($SUMMARY)
-        echo "COVERAGE=$(echo ${TOKENS[2]})" >> $GITHUB_ENV
-
+      
     - name: Create Coverage Badge
       uses: schneegans/dynamic-badges-action@v1.1.0
       with:
         auth: ${{ secrets.GIST_SECRET }}
         gistID: 8effb3f12e575124c19dc2b50aa632f8
-        filename: stot_coverage.json
+        filename: store_api_coverage.json
         label: coverage
         message: ${{ env.COVERAGE }}
         namedLogo: jest
