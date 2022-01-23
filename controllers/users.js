@@ -12,14 +12,24 @@ const ErrorResponse = require('../utils/error');
  */
 exports.registerUser = asyncHandler(async (req, res, next) => {
   const { name, email, password, role } = req.body;
-  const newUser = await User.create({
-    name,
-    email,
-    password,
-    role
-  });
-  //
-  return sendTokenResponse(newUser, 201, res);
+  if (!name || !email || !password) {
+    let error = new ErrorResponse('Validation faild, check if body has name, email and password.', 400);
+    res.status(400).json(error);
+    return next();
+  }
+ 
+  try {
+    const newUser = await User.create({
+      name,
+      email,
+      password,
+      role,
+    });
+    return sendTokenResponse(newUser, 201, res);
+  } catch (error) {
+    let err = new ErrorResponse(error);
+    res.status(400).json({ err });
+  }
 });
 
 exports.signInUser = asyncHandler(async (req, res, next) => {
