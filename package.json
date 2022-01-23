@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "jest",
-    "test:coverage": "npm test -- --coverage",
+    "test:coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "dev": "nodemon node server",
     "start": "NODE_ENV=production node server",
     "release": "release-it",
@@ -53,11 +53,24 @@
     "release-it": "^14.12.3",
     "xss-clean": "^0.1.1"
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "!**/node_modules/**",
+      "!.release-it.json",
+      "!package*.json",
+      "!.release-it.json",
+      "!coverage/**"
+    ],
+    "coverageReporters": [
+      "json-summary"
+    ]
+  },
   "devDependencies": {
     "auto-changelog": "^2.3.0",
     "chai": "^4.3.4",
     "chai-http": "^4.3.0",
     "colors": "^1.4.0",
+    "coveralls": "^3.1.1",
     "jest": "^27.4.7",
     "mocha": "^9.1.4",
     "morgan": "^1.10.0",
