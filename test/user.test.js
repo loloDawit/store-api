@@ -15,7 +15,7 @@ describe('API test', () => {
   let user = {
     name: 'testuser',
     email: 'testuser@gmail.com',
-    password: 'passw0$rd',
+    password: 'passw0$rd'
   };
   describe('POST /api/v1/register', () => {
     it('should create a new user', async () => {
@@ -30,19 +30,55 @@ describe('API test', () => {
       expect(response.body).toHaveProperty('scope');
       expect(response.body).toHaveProperty('expiresIn');
     });
-    it('should throw 400 with error message', async () => {
+    it('should throw 400 with error message when email and password is missing', async () => {
       // await User.create(user);
       user = {
-        name: 'testUserx',
+        name: 'testUserx'
       };
       const response = await request.post('/api/v1/auth/register').send(user);
       expect(response.status).toBe(400);
       const expected = {
         message: 'Validation faild, check if body has name, email and password.',
-        error: 'Validation faild, check if body has name, email and password.',
+        error: 'Validation faild, check if body has name, email and password.'
       };
       const actual = response.body;
       expect(actual).toMatchObject(expected);
+    });
+    it('should throw 400 with error message when name and password is missing', async () => {
+      // await User.create(user);
+      user = {
+        email: 'testuser@gmail.com'
+      };
+      const response = await request.post('/api/v1/auth/register').send(user);
+      expect(response.status).toBe(400);
+      const expected = {
+        message: 'Validation faild, check if body has name, email and password.',
+        error: 'Validation faild, check if body has name, email and password.'
+      };
+      const actual = response.body;
+      expect(actual).toMatchObject(expected);
+    });
+    it('should throw 400 with error message when body is missing', async () => {
+      // await User.create(user);
+      user = {};
+      const response = await request.post('/api/v1/auth/register').send(user);
+      expect(response.status).toBe(400);
+      const expected = {
+        message: 'Validation faild, check if body has name, email and password.',
+        error: 'Validation faild, check if body has name, email and password.'
+      };
+      const actual = response.body;
+      expect(actual).toMatchObject(expected);
+    });
+  });
+  describe('POST /api/v1/signin', () => {
+    let body = {
+      email: 'testuser@gmail.com',
+      password: 'passw0$rd'
+    };
+    it('should login user with status code 200 ', async () => {
+      const response = await request.post('/api/v1/auth/signin').send(body);
+      expect(response.status).toBe(200);
     });
   });
 });
