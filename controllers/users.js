@@ -17,18 +17,18 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
     res.status(400).json(error);
     return next();
   }
- 
+
   try {
     const newUser = await User.create({
       name,
       email,
       password,
-      role,
+      role
     });
     return sendTokenResponse(newUser, 201, res);
   } catch (error) {
     let err = new ErrorResponse(error);
-    res.status(400).json({ err });
+    res.status(400).json(err);
   }
 });
 
