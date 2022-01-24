@@ -2,7 +2,7 @@
 // CURD - create upate read read delete
 const User = require('../models/Users');
 const asyncHandler = require('../middleware/async');
-const { sendTokenResponse } = require('../utils/response');
+const { sendTokenWithResponse } = require('../utils/response');
 const ErrorResponse = require('../utils/error');
 
 /**
@@ -25,7 +25,7 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
       password,
       role
     });
-    return sendTokenResponse(newUser, 201, res);
+    return sendTokenWithResponse(newUser, 201, res);
   } catch (error) {
     let err = new ErrorResponse(error);
     res.status(400).json(err);
@@ -48,5 +48,5 @@ exports.signInUser = asyncHandler(async (req, res, next) => {
   if (!comparePassword) {
     return next(new ErrorResponse('Validation failed, Invalid password/email', 400));
   }
-  return sendTokenResponse(user, 200, res);
+  return sendTokenWithResponse(user, 200, res);
 });
