@@ -70,6 +70,34 @@ describe('API test', () => {
       const actual = response.body;
       expect(actual).toMatchObject(expected);
     });
+    it('Should throw 400 with error message when name is max than allowed', async () => {
+      let user = {
+        name: 'testusertestuser',
+        email: 'testuser@gmail.com',
+        password: 'passw0$rd'
+      };
+      const response = await request.post('/api/v1/auth/register').send(user);
+      expect(response.status).toBe(400);
+      let expected = {
+        message: 'User validation failed: name: Name can not be more than 15 char',
+        error: 'User validation failed'
+      };
+      expect(response.body).toMatchObject(expected);
+    });
+    it('Should throw 400 with error message when email is formatted badly', async () => {
+      let user = {
+        name: 'testUser',
+        email: 'testuser.com',
+        password: 'passw0$rd'
+      };
+      const response = await request.post('/api/v1/auth/register').send(user);
+      expect(response.status).toBe(400);
+      let expected = {
+        message: 'User validation failed: email: Please use a valid email',
+        error: 'User validation failed'
+      };
+      expect(response.body).toMatchObject(expected);
+    });
   });
   describe('POST /api/v1/signin', () => {
     let body = {
