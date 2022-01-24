@@ -1,5 +1,11 @@
 const moment = require('moment');
-exports.sendTokenResponse = (user, statusCode, response) => {
+/**
+ * sendTokenWithResponse generates new token and send json response with token
+ * @param {*} user newly created user
+ * @param {*} statusCode http status code 
+ * @param {*} response with token
+ */
+exports.sendTokenWithResponse = (user, statusCode, response) => {
   const token = user.getSignedJWT();
   const options = {
     expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE_DATE * 24 * 60 * 60 * 1000),
