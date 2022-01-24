@@ -31,7 +31,7 @@ jobs:
       run: |
         npm install
         npm test
-        npm test:coverage
+        npm run test:coverage
       env:
         MONGO_URI : ${{ secrets.MONGO_URI }}
         COOKIE_SECRET : ${{ secrets.COOKIE_SECRET }}
