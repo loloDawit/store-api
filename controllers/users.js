@@ -35,18 +35,29 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
 exports.signInUser = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    return next(new ErrorResponse('Validation failed, check you have the correct password and email', 400));
+    let error = new ErrorResponse('Validation failed, check you have the correct password and email', 400);
+    res.status(400).json(error);
+    return next();
   }
 
   const user = await User.findOne({ email: email }).select('+password');
 
   if (!user) {
-    return next(new ErrorResponse('Validation failed, Invalid password/email', 400));
+    let error = new ErrorResponse('Validation failed, Invalid password/email', 400);
+    res.status(400).json(error);
+    return next();
   }
   // validate password
-  const comparePassword = await user.validateHashedPassword(password);
-  if (!comparePassword) {
-    return next(new ErrorResponse('Validation failed, Invalid password/email', 400));
+  try {
+    const comparePassword = await user.validateHashedPassword(password);
+    if (!comparePassword) {
+      let error = new ErrorResponse('Validation failed, Invalid password/email', 400);
+      res.status(400).json(error);
+      return next();
+    }
+    return sendTokenResponse(user, 200, res);
+  } catch (error) {
+    res.status(400).json(new ErrorResponse(error, 400));
+    return next();
   }
-  return sendTokenResponse(user, 200, res);
 });
