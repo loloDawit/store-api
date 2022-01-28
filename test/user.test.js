@@ -108,5 +108,30 @@ describe('API test', () => {
       const response = await request.post('/api/v1/auth/signin').send(body);
       expect(response.status).toBe(200);
     });
+    it('should throw 400 with error message when email is missing', async () => {
+      let body = {
+        password: 'passw0$rd'
+      };
+      const response = await request.post('/api/v1/auth/signin').send(body);
+      expect(response.status).toBe(400);
+      let expected = {
+        message: 'Validation failed, check you have the correct password and email',
+        error: 'Validation failed, check you have the correct password and email'
+      };
+      expect(response.body).toMatchObject(expected);
+    });
+
+    it('should throw 400 with error message when password is missing', async () => {
+      let body = {
+        email: 'testuser@gmail.com'
+      };
+      const response = await request.post('/api/v1/auth/signin').send(body);
+      expect(response.status).toBe(400);
+      let expected = {
+        message: 'Validation failed, check you have the correct password and email',
+        error: 'Validation failed, check you have the correct password and email'
+      };
+      expect(response.body).toMatchObject(expected);
+    });
   });
 });
