@@ -48,9 +48,26 @@ exports.signInUser = asyncHandler(async (req, res, next) => {
   return sendTokenWithResponse(user, 200, res);
 });
 
+/**
+ * @description Update user details (email | name) fields
+ * @param req {object} the request
+ * @param res {object} the response
+ * @param {Function} next
+ * @access Private
+ * @returns updated name | email fields
+ */
 exports.updateUserDetails = asyncHandler(async (req, res, next) => {
   const { email, name } = req.body;
-  console.log(req.user.id);
-  // find user by email
-  //const user = await User.findByIdAndUpdate({ email });
+  if (!email || !name) {
+    return next(new ErrorResponse('Validation faild, check if body has name, email and password.'));
+  }
+  try {
+    const user = await User.findByIdAndUpdate(req.user.id, { email, name }, { new: true, runValidators: true });
+    res.status(200).json({
+      success: true,
+      data: user
+    });
+  } catch (error) {
+    return next(new ErrorResponse(error, 400));
+  }
 });
