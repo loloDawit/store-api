@@ -71,3 +71,31 @@ exports.updateUserDetails = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse(error, 400));
   }
 });
+/**
+ * @description Update user password
+ * @param req {object} the request
+ * @param res {object} the response
+ * @param {Function} next
+ * @access Private
+ * @returns updated password
+ */
+exports.updateUserPassword = asyncHandler(async (req, res, next) => {
+  const { currentPassword, newPassword } = req.body;
+  if (!currentPassword || !newPassword) {
+    return next(new ErrorResponse('Validation faild, check if body has both current and new passwor', 400));
+  }
+
+  try {
+    // find user by logged in id
+    const user = await User.findById(req.user.id).select('+password');
+    var isValidPassword = await user.validateHashedPassword(currentPassword);
+    if (!isValidPassword) {
+      return next(new ErrorResponse('Validation faild, invalid password', 401));
+    }
+    user.password = newPassword;
+    await user.save();
+    sendTokenWithResponse(user, 200, res);
+  } catch (error) {
+    return next(new ErrorResponse(error, 401));
+  }
+});
