@@ -15,6 +15,7 @@ require('colors');
 const auth = require('./routes/auth');
 
 const app = express();
+const { errorHandler } = require('./middleware/error');
 
 // Body parser
 app.use(express.json());
@@ -66,5 +67,6 @@ if (process.env.NODE_ENV === 'development') {
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/v1/auth', auth);
+app.use(errorHandler);
 
 module.exports = app;
