@@ -1,6 +1,7 @@
 const ErrorResponse = require('../utils/error');
 const jsonWebToken = require('jsonwebtoken');
 const User = require('../models/Users');
+const asyncHandler = require('./async');
 
 exports.protect = asyncHandler(async (req, res, next) => {
   let token;
