@@ -82,7 +82,7 @@ exports.updateUserDetails = asyncHandler(async (req, res, next) => {
 exports.updateUserPassword = asyncHandler(async (req, res, next) => {
   const { currentPassword, newPassword } = req.body;
   if (!currentPassword || !newPassword) {
-    return next(new ErrorResponse('Validation faild, check if body has both current and new passwor', 400));
+    return next(new ErrorResponse('Validation faild, check if body has both current and new password.', 400));
   }
 
   try {
