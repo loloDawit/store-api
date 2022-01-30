@@ -100,6 +100,25 @@ describe('API test', () => {
       };
       expect(response.body).toMatchObject(expected);
     });
+    it('should throw 400 with error message when password is less than eight charactor', async () => {
+      let user = {
+        name: 'testuser',
+        email: 'testuser@gmail.com',
+        password: 'bm'
+      };
+      const response = await request.post('/api/v1/auth/register').send(user);
+      expect(response.status).toBe(400);
+      let expected = {
+        success: false,
+        error: {
+          message:
+            'User validation failed: password: Path `password` (`bm`) is shorter than the minimum allowed length (8).',
+          error: 'User validation failed',
+          statusCode: 400
+        }
+      };
+      expect(response.body).toMatchObject(expected);
+    });
     it('Should throw 400 with error message when email is formatted badly', async () => {
       let user = {
         name: 'testUser',
@@ -127,6 +146,14 @@ describe('API test', () => {
     it('should login user with status code 200 ', async () => {
       const response = await request.post('/api/v1/auth/signin').send(body);
       expect(response.status).toBe(200);
+      const expected = { access: 'user', apiOwner: 'api.v1' };
+      const actual = response.body.scope;
+      expect(actual).toMatchObject(expected);
+      expect(response.body.success).toBeTruthy();
+      expect(response.body).toHaveProperty('accessToken');
+      expect(response.body).toHaveProperty('scope');
+      expect(response.body).toHaveProperty('expiresIn');
     });
+    // it('should throw an error message when email address and password are missing', )
   });
 });
