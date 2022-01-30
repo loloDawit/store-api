@@ -38,8 +38,12 @@ describe('API test', () => {
       const response = await request.post('/api/v1/auth/register').send(user);
       expect(response.status).toBe(400);
       const expected = {
-        message: 'Validation faild, check if body has name, email and password.',
-        error: 'Validation faild, check if body has name, email and password.'
+        success: false,
+        error: {
+          message: 'Validation faild, check if body has name, email and password.',
+          error: 'Validation faild, check if body has name, email and password.',
+          statusCode: 400
+        }
       };
       const actual = response.body;
       expect(actual).toMatchObject(expected);
@@ -52,8 +56,12 @@ describe('API test', () => {
       const response = await request.post('/api/v1/auth/register').send(user);
       expect(response.status).toBe(400);
       const expected = {
-        message: 'Validation faild, check if body has name, email and password.',
-        error: 'Validation faild, check if body has name, email and password.'
+        success: false,
+        error: {
+          message: 'Validation faild, check if body has name, email and password.',
+          error: 'Validation faild, check if body has name, email and password.',
+          statusCode: 400
+        }
       };
       const actual = response.body;
       expect(actual).toMatchObject(expected);
@@ -64,8 +72,12 @@ describe('API test', () => {
       const response = await request.post('/api/v1/auth/register').send(user);
       expect(response.status).toBe(400);
       const expected = {
-        message: 'Validation faild, check if body has name, email and password.',
-        error: 'Validation faild, check if body has name, email and password.'
+        success: false,
+        error: {
+          message: 'Validation faild, check if body has name, email and password.',
+          error: 'Validation faild, check if body has name, email and password.',
+          statusCode: 400
+        }
       };
       const actual = response.body;
       expect(actual).toMatchObject(expected);
@@ -79,8 +91,12 @@ describe('API test', () => {
       const response = await request.post('/api/v1/auth/register').send(user);
       expect(response.status).toBe(400);
       let expected = {
-        message: 'User validation failed: name: Name can not be more than 15 char',
-        error: 'User validation failed'
+        success: false,
+        error: {
+          message: 'User validation failed: name: Name can not be more than 15 char',
+          error: 'User validation failed',
+          statusCode: 400
+        }
       };
       expect(response.body).toMatchObject(expected);
     });
@@ -93,8 +109,12 @@ describe('API test', () => {
       const response = await request.post('/api/v1/auth/register').send(user);
       expect(response.status).toBe(400);
       let expected = {
-        message: 'User validation failed: email: Please use a valid email',
-        error: 'User validation failed'
+        success: false,
+        error: {
+          message: 'User validation failed: email: Please use a valid email',
+          error: 'User validation failed',
+          statusCode: 400
+        }
       };
       expect(response.body).toMatchObject(expected);
     });
