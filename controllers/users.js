@@ -13,9 +13,7 @@ const ErrorResponse = require('../utils/error');
 exports.registerUser = asyncHandler(async (req, res, next) => {
   const { name, email, password, role } = req.body;
   if (!name || !email || !password) {
-    let error = new ErrorResponse('Validation faild, check if body has name, email and password.', 400);
-    res.status(400).json(error);
-    return next();
+    return next(new ErrorResponse('Validation faild, check if body has name, email and password.', 400));
   }
 
   try {
@@ -27,8 +25,7 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
     });
     return sendTokenWithResponse(newUser, 201, res);
   } catch (error) {
-    let err = new ErrorResponse(error);
-    res.status(400).json(err);
+    return next(new ErrorResponse(error, 400));
   }
 });
 
@@ -49,4 +46,11 @@ exports.signInUser = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse('Validation failed, Invalid password/email', 400));
   }
   return sendTokenWithResponse(user, 200, res);
+});
+
+exports.updateUserDetails = asyncHandler(async (req, res, next) => {
+  const { email, name } = req.body;
+  console.log(req.user.id);
+  // find user by email
+  //const user = await User.findByIdAndUpdate({ email });
 });
