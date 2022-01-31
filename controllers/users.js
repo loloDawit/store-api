@@ -110,7 +110,6 @@ exports.resetPasswordRequest = asyncHandler(async (req, res, next) => {
   try {
     const user = await User.findOne({ email });
     const resetToken = user.getPasswordResetToken();
-    console.log(resetToken);
     await user.save({
       validateBeforeSave: false
     });

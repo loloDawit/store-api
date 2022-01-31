@@ -9,7 +9,7 @@ exports.sendEmail = async (options) => {
       pass: process.env.NODE_ENV === 'production' ? process.env.AWS_SMTP_PASSWORD : process.env.SMTP_PASSWORD
     }
   };
-  console.log(state);
+
   const transporter = nodemailer.createTransport(state);
   // send email with defined transport object
   const message = {
