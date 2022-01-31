@@ -4,6 +4,8 @@ const User = require('../models/Users');
 const asyncHandler = require('../middleware/async');
 const { sendTokenWithResponse } = require('../utils/response');
 const ErrorResponse = require('../utils/error');
+const { sendEmail } = require('../utils/email');
+const crypto = require('crypto');
 
 /**
  * RegisterUser Creates new users
@@ -98,4 +100,75 @@ exports.updateUserPassword = asyncHandler(async (req, res, next) => {
   } catch (error) {
     return next(new ErrorResponse(error, 401));
   }
+});
+
+exports.resetPasswordRequest = asyncHandler(async (req, res, next) => {
+  const { email } = req.body;
+  if (!email) {
+    return next(new ErrorResponse('Validation faild, invalid email.', 400));
+  }
+  try {
+    const user = await User.findOne({ email });
+    const resetToken = user.getPasswordResetToken();
+    console.log(resetToken);
+    await user.save({
+      validateBeforeSave: false
+    });
+    // creat reset url
+    const resetURL = `${req.protocol}://${req.get('host')}/api/v1/auth/resetpassword/${resetToken}`;
+    const message = `<!doctype html>
+    <html ang="en">
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Reset Password</title>
+      </head>
+      <body style="font-family: sans-serif;">
+        <div style="display: block; margin: auto; max-width: 600px;" class="main">
+          <h1 style="font-size: 18px; font-weight: bold; margin-top: 20px">Hi there,</h1>
+          <p>A password reset was requested for this email address <b>${email}</b>. If you requested this reset, click
+          the link below to reset your password.</p>
+          <p><a href="$${resetURL}}">Reset Your Password</a></p>
+        </div>
+        <style>
+          .main { background-color: white; }
+          a:hover { border-left-width: 1em; min-height: 2em; }
+        </style>
+      </body>
+    </html>`;
+
+    await sendEmail({
+      email,
+      subject: 'Password Reset',
+      message
+    });
+    res.status(200).json({
+      success: true,
+      data: 'Email Sent'
+    });
+  } catch (error) {
+    console.log(error);
+    return next(new ErrorResponse(error, 400));
+  }
+});
+
+exports.resetPassword = asyncHandler(async (req, res, next) => {
+  const { token } = req.params;
+  const { password } = req.body;
+  if (!token) {
+    return next(new ErrorResponse('Token missing', 400));
+  }
+
+  const resetPasswordToken = crypto.createHash('sha256').update(token).digest('hex');
+  const user = await User.findOne({ resetPasswordToken, resetPasswordExpire: { $gt: Date.now() } });
+  if (!user) {
+    return next(new ErrorResponse('Invalid token', 400));
+  }
+  user.password = password;
+  user.resetPasswordToken = undefined;
+  user.resetPasswordExpire = undefined;
+  await user.save();
+
+  sendTokenWithResponse(user, 200, res);
 });
