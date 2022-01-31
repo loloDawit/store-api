@@ -49,6 +49,7 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
     "mongoose": "^6.1.7",
+    "nodemailer": "^6.7.2",
     "nodemon": "^2.0.15",
     "release-it": "^14.12.3",
     "xss-clean": "^0.1.1"
