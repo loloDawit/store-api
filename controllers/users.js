@@ -67,12 +67,10 @@ exports.updateUserDetails = asyncHandler(async (req, res, next) => {
   // both should work
 
   if (Object.keys(req.body).length === 0) {
-    console.log(req.body, ' hiiiiiiiiiiiiiiii');
     return next(new ErrorResponse('Validation faild, check if body has either name or email.'));
   }
   try {
     // where and how is user id set?
-    console.log(req.user);
     const user = await User.findByIdAndUpdate(req.user.id, { email, name }, { new: true, runValidators: true });
     res.status(200).json({
       success: true,
