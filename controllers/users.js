@@ -66,8 +66,9 @@ exports.updateUserDetails = asyncHandler(async (req, res, next) => {
   // name only should work
   // both should work
 
-  if (!email || !name) {
-    return next(new ErrorResponse('Validation faild, check if body has name, email and password.'));
+  if (Object.keys(req.body).length === 0) {
+    console.log(req.body, ' hiiiiiiiiiiiiiiii');
+    return next(new ErrorResponse('Validation faild, check if body has either name or email.'));
   }
   try {
     // where and how is user id set?
