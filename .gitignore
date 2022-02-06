@@ -7,4 +7,3 @@ node_modules/
 /coverage
 
 .coveralls.yml
-package-lock.json
