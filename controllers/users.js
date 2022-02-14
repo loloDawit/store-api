@@ -65,7 +65,6 @@ exports.updateUserDetails = asyncHandler(async (req, res, next) => {
   // email only should work
   // name only should work
   // both should work
-
   if (Object.keys(req.body).length === 0) {
     return next(new ErrorResponse('Validation faild, check if body has either name or email.'));
   }
