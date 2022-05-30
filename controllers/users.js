@@ -32,6 +32,7 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
 });
 
 exports.signInUser = asyncHandler(async (req, res, next) => {
+  console.log('im here', req);
   const { email, password } = req.body;
   if (!email || !password) {
     return next(new ErrorResponse('Validation failed, check you have the correct password and email', 400));
@@ -60,10 +61,15 @@ exports.signInUser = asyncHandler(async (req, res, next) => {
  */
 exports.updateUserDetails = asyncHandler(async (req, res, next) => {
   const { email, name } = req.body;
-  if (!email || !name) {
-    return next(new ErrorResponse('Validation faild, check if body has name, email and password.'));
+  // TODO should only check if either exist not both neccessorly
+  // email only should work
+  // name only should work
+  // both should work
+  if (Object.keys(req.body).length === 0) {
+    return next(new ErrorResponse('Validation faild, check if body has either name or email.'));
   }
   try {
+    // where and how is user id set?
     const user = await User.findByIdAndUpdate(req.user.id, { email, name }, { new: true, runValidators: true });
     res.status(200).json({
       success: true,
